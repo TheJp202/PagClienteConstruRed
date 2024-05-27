@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useLoading } from "../../utils/loadingGlobal";
 import axios from "axios";
+import { motion } from 'framer-motion';
+import Typewriter from 'typewriter-effect';
 
 const Navbar = () => {
   const [emailLogin, setEmailLogin] = useState("");
@@ -20,7 +22,7 @@ const Navbar = () => {
 
   const [isModalLoginOpen, setIsModalLoginOpen] = useState(false);
   const [isModalRegisterOpen, setIsModalRegisterOpen] = useState(false);
-  const [isModalMensajeOpen, setIsModalMensajeOpen] = useState(false);
+  const [isModalMensajeOpen, setIsModalMensajeOpen] = useState(false); 
 
   const [sessionCliente, setSessionCliente] = useState([]);
   const [isSessionActive, setIsSessionActive] = useState(false);
@@ -283,97 +285,113 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="fixed w-full h-28 bg-[#18108f] z-10 top-0">
-        <div className="flex w-full justify-center">
-          <div className="flex w-11/12 flex-row max-w-[1300px]">
-            <div className="w-1/3">
-              <img
-                src="/logo_emp.png"
-                className="w-20 h-20 mt-4 rounded-[10%]"
-              />
-            </div>
-            <div className="w-1/3 text-center my-auto">
-              <p className="text-white text-2xl font-bold">
-                ¡Bienvenido a <span className="font-extrabold">ConstruRed</span>
-                !
-              </p>
-            </div>
-            <div className="flex w-1/3 justify-end">
-              <div className={`flex-col text-center my-2 ${isSessionActive?"hidden":"flex"}`}>
-                <button
-                  className="text-white rounded-[5%] bg-blue-500 py-1 px-2 hover:bg-blue-600"
-                  onClick={() => openModalLogin()}
-                >
-                  Inicia Sesión
-                </button>
-                <p className="text-white my-1">Ó</p>
-                <button
-                  className="text-white rounded-[5%] bg-blue-500 py-1 px-2 hover:bg-blue-600"
-                  onClick={() => openModalRegister()}
-                >
-                  Registrate
-                </button>
-              </div>
-              <div className={`flex-col text-center my-2 ${isSessionActive?"flex":"hidden"}`}>
-              <button
-                  className="text-white rounded-[5%] bg-blue-500 py-1 px-2 hover:bg-blue-600"
-                  onClick={() => openModalMensaje()}
-                >
-                  Soporte
-                </button>
-                <p className="text-white my-1">Ó</p>
-                <button
-                  className="text-white rounded-[5%] bg-blue-500 py-1 px-2 hover:bg-blue-600"
-                  onClick={() => SessionLogout()}
-                >
-                  Cerrar sesión
-                </button>
-              </div>
-            </div>
-          </div>
+  <div>
+    <div className="fixed w-full h-28 z-10 top-0 flex justify-center items-center">
+      <div className="flex w-11/12 max-w-[1300px]">
+        <div className="w-1/3 flex items-center">
+          <img
+            src="/logo_emp.png"
+            className="w-20 h-20 mt-4 rounded-[10%]"
+            alt="Logo"
+          />
+        </div>
+        <div className="w-1/3 flex justify-center items-center">
+          <p className="text-black text-2xl font-bold">
+            <Typewriter
+              options={{
+                strings: ["¡Bienvenido a ConstruRed!"],
+                autoStart: true,
+                loop: true,
+                delay: 75,
+              }}
+            />
+          </p>
+        </div>
+        <div className="w-1/3 flex justify-end items-center space-x-4">
+          {isSessionActive ? (
+            <>
+              <motion.button
+                className="text-black rounded-[5%] bg-transparent border border-black py-1 px-2 hover:bg-black hover:text-white transition-colors duration-300"
+                whileHover={{ scale: 1.1 }}
+                onClick={() => openModalMensaje()}
+              >
+                Soporte
+              </motion.button>
+              <p className="text-black">Ó</p>
+              <motion.button
+                className="text-black rounded-[5%] bg-transparent border border-black py-1 px-2 hover:bg-black hover:text-white transition-colors duration-300"
+                whileHover={{ scale: 1.1 }}
+                onClick={() => SessionLogout()}
+              >
+                Cerrar sesión
+              </motion.button>
+            </>
+          ) : (
+            <>
+              <motion.button
+                className="text-black rounded-[5%] bg-transparent border border-black py-1 px-2 hover:bg-black hover:text-white transition-colors duration-300"
+                whileHover={{ scale: 1.1 }}
+                onClick={() => openModalLogin()}
+              >
+                Inicia Sesión
+              </motion.button>
+              <p className="text-black">Ó</p>
+              <motion.button
+                className="text-black rounded-[5%] bg-transparent border border-black py-1 px-2 hover:bg-black hover:text-white transition-colors duration-300"
+                whileHover={{ scale: 1.1 }}
+                onClick={() => openModalRegister()}
+              >
+                Regístrate
+              </motion.button>
+            </>
+          )}
         </div>
       </div>
-      <ModalLogin
-        isOpen={isModalLoginOpen}
-        closeModal={closeModalLogin}
-        password={passwordLogin}
-        email={emailLogin}
-        setPassword={setPasswordLogin}
-        setEmail={setEmailLogin}
-        SessionLogin={SessionLogin}
-      />
+    </div>
 
-      <ModalRegister
-        isOpen={isModalRegisterOpen}
-        closeModal={closeModalRegister}
-        nombres={nombresRegister}
-        apellidos={apellidosRegister}
-        dni={DNIRegister}
-        telefono={telefonoRegister}
-        password={passwordRegister}
-        email={emailRegister}
-        setNombres={setNombresRegister}
-        setApellidos={setApellidosRegister}
-        setDNI={setDNIRegister}
-        setTelefono={setTelefonoRegister}
-        setPassword={setPasswordRegister}
-        setEmail={setEmailRegister}
-        SessionRegister={SessionRegister}
-      />
+    {/* Modals */}
+    <ModalLogin
+      isOpen={isModalLoginOpen}
+      closeModal={closeModalLogin}
+      password={passwordLogin}
+      email={emailLogin}
+      setPassword={setPasswordLogin}
+      setEmail={setEmailLogin}
+      SessionLogin={SessionLogin}
+    />
 
-      <ModalMensaje
-        isOpen = {isModalMensajeOpen}
-        closeModal = {closeModalMensaje}
-        sessionCliente = {sessionCliente}
-        tipos = {tipos}
-        tipoMensaje = {tipoMensaje}
-        setTipoMensaje = {setTipoMensaje}
-        mensaje = {mensaje}
-        setMensaje = {setMensaje}
-        EnviarMensaje = {EnviarMensaje}
-      />
+    <ModalRegister
+      isOpen={isModalRegisterOpen}
+      closeModal={closeModalRegister}
+      nombres={nombresRegister}
+      apellidos={apellidosRegister}
+      dni={DNIRegister}
+      telefono={telefonoRegister}
+      password={passwordRegister}
+      email={emailRegister}
+      setNombres={setNombresRegister}
+      setApellidos={setApellidosRegister}
+      setDNI={setDNIRegister}
+      setTelefono={setTelefonoRegister}
+      setPassword={setPasswordRegister}
+      setEmail={setEmailRegister}
+      SessionRegister={SessionRegister}
+    />
 
-    </>
+    <ModalMensaje
+      isOpen={isModalMensajeOpen}
+      closeModal={closeModalMensaje}
+      sessionCliente={sessionCliente}
+      tipos={tipos}
+      tipoMensaje={tipoMensaje}
+      setTipoMensaje={setTipoMensaje}
+      mensaje={mensaje}
+      setMensaje={setMensaje}
+      EnviarMensaje={EnviarMensaje}
+    />
+  </div>
+</>
+
   );
 };
 
