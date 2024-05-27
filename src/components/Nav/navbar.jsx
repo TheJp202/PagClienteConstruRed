@@ -285,111 +285,109 @@ const Navbar = () => {
 
   return (
     <>
-  <div>
-    <div className="fixed w-full h-28 z-10 top-0 flex justify-center items-center">
-      <div className="flex w-11/12 max-w-[1300px]">
-        <div className="w-1/3 flex items-center">
-          <img
-            src="/logo_emp.png"
-            className="w-20 h-20 mt-4 rounded-[10%]"
-            alt="Logo"
+  <div className=" bg-center h-28 z-10 top-0 flex justify-center items-center ml-0">
+    <div className="flex w-11/12 max-w-[1300px] items-center">
+      <div className="w-1/3 flex justify-start items-center">
+        <img
+          src="/logo_emp.png"
+          className="w-20 h-20 mt-4 rounded-[10%]"
+          alt="Logo"
+        />
+      </div>
+      <div className="w-1/3 flex justify-center items-center text-white">
+        <p className="text-2xl font-bold">
+          <Typewriter
+            options={{
+              strings: ["¡Bienvenido a ConstruRed!"],
+              autoStart: true,
+              loop: true,
+              delay: 75,
+            }}
           />
-        </div>
-        <div className="w-1/3 flex justify-center items-center">
-          <p className="text-black text-2xl font-bold">
-            <Typewriter
-              options={{
-                strings: ["¡Bienvenido a ConstruRed!"],
-                autoStart: true,
-                loop: true,
-                delay: 75,
-              }}
-            />
-          </p>
-        </div>
-        <div className="w-1/3 flex justify-end items-center space-x-4">
-          {isSessionActive ? (
-            <>
-              <motion.button
-                className="text-black rounded-[5%] bg-transparent border border-black py-1 px-2 hover:bg-black hover:text-white transition-colors duration-300"
-                whileHover={{ scale: 1.1 }}
-                onClick={() => openModalMensaje()}
-              >
-                Soporte
-              </motion.button>
-              <p className="text-black">Ó</p>
-              <motion.button
-                className="text-black rounded-[5%] bg-transparent border border-black py-1 px-2 hover:bg-black hover:text-white transition-colors duration-300"
-                whileHover={{ scale: 1.1 }}
-                onClick={() => SessionLogout()}
-              >
-                Cerrar sesión
-              </motion.button>
-            </>
-          ) : (
-            <>
-              <motion.button
-                className="text-black rounded-[5%] bg-transparent border border-black py-1 px-2 hover:bg-black hover:text-white transition-colors duration-300"
-                whileHover={{ scale: 1.1 }}
-                onClick={() => openModalLogin()}
-              >
-                Inicia Sesión
-              </motion.button>
-              <p className="text-black">Ó</p>
-              <motion.button
-                className="text-black rounded-[5%] bg-transparent border border-black py-1 px-2 hover:bg-black hover:text-white transition-colors duration-300"
-                whileHover={{ scale: 1.1 }}
-                onClick={() => openModalRegister()}
-              >
-                Regístrate
-              </motion.button>
-            </>
-          )}
-        </div>
+        </p>
+      </div>
+      <div className="w-1/3 flex justify-end items-center space-x-4">
+        {isSessionActive ? (
+          <>
+            <motion.button
+              className="text-white rounded-[5%] bg-transparent border border-white py-1 px-2 hover:bg-white hover:text-gray-800 transition-colors duration-300"
+              whileHover={{ scale: 1.1 }}
+              onClick={() => openModalMensaje()}
+            >
+              Soporte
+            </motion.button>
+            <p className="text-white">Ó</p>
+            <motion.button
+              className="text-white rounded-[5%] bg-transparent border border-white py-1 px-2 hover:bg-white hover:text-gray-800 transition-colors duration-300"
+              whileHover={{ scale: 1.1 }}
+              onClick={() => SessionLogout()}
+            >
+              Cerrar sesión
+            </motion.button>
+          </>
+        ) : (
+          <>
+            <motion.button
+              className="text-white rounded-[5%] bg-transparent border border-white py-1 px-2 hover:bg-white hover:text-gray-800 transition-colors duration-300"
+              whileHover={{ scale: 1.1 }}
+              onClick={() => openModalLogin()}
+            >
+              Inicia Sesión
+            </motion.button>
+            <p className="text-white">Ó</p>
+            <motion.button
+              className="text-white rounded-[5%] bg-transparent border border-white py-1 px-2 hover:bg-white hover:text-gray-800 transition-colors duration-300"
+              whileHover={{ scale: 1.1 }}
+              onClick={() => openModalRegister()}
+            >
+              Regístrate
+            </motion.button>
+          </>
+        )}
       </div>
     </div>
-
-    {/* Modals */}
-    <ModalLogin
-      isOpen={isModalLoginOpen}
-      closeModal={closeModalLogin}
-      password={passwordLogin}
-      email={emailLogin}
-      setPassword={setPasswordLogin}
-      setEmail={setEmailLogin}
-      SessionLogin={SessionLogin}
-    />
-
-    <ModalRegister
-      isOpen={isModalRegisterOpen}
-      closeModal={closeModalRegister}
-      nombres={nombresRegister}
-      apellidos={apellidosRegister}
-      dni={DNIRegister}
-      telefono={telefonoRegister}
-      password={passwordRegister}
-      email={emailRegister}
-      setNombres={setNombresRegister}
-      setApellidos={setApellidosRegister}
-      setDNI={setDNIRegister}
-      setTelefono={setTelefonoRegister}
-      setPassword={setPasswordRegister}
-      setEmail={setEmailRegister}
-      SessionRegister={SessionRegister}
-    />
-
-    <ModalMensaje
-      isOpen={isModalMensajeOpen}
-      closeModal={closeModalMensaje}
-      sessionCliente={sessionCliente}
-      tipos={tipos}
-      tipoMensaje={tipoMensaje}
-      setTipoMensaje={setTipoMensaje}
-      mensaje={mensaje}
-      setMensaje={setMensaje}
-      EnviarMensaje={EnviarMensaje}
-    />
   </div>
+
+  {/* Modals */}
+  <ModalLogin
+    isOpen={isModalLoginOpen}
+    closeModal={closeModalLogin}
+    password={passwordLogin}
+    email={emailLogin}
+    setPassword={setPasswordLogin}
+    setEmail={setEmailLogin}
+    SessionLogin={SessionLogin}
+  />
+
+  <ModalRegister
+    isOpen={isModalRegisterOpen}
+    closeModal={closeModalRegister}
+    nombres={nombresRegister}
+    apellidos={apellidosRegister}
+    dni={DNIRegister}
+    telefono={telefonoRegister}
+    password={passwordRegister}
+    email={emailRegister}
+    setNombres={setNombresRegister}
+    setApellidos={setApellidosRegister}
+    setDNI={setDNIRegister}
+    setTelefono={setTelefonoRegister}
+    setPassword={setPasswordRegister}
+    setEmail={setEmailRegister}
+    SessionRegister={SessionRegister}
+  />
+
+  <ModalMensaje
+    isOpen={isModalMensajeOpen}
+    closeModal={closeModalMensaje}
+    sessionCliente={sessionCliente}
+    tipos={tipos}
+    tipoMensaje={tipoMensaje}
+    setTipoMensaje={setTipoMensaje}
+    mensaje={mensaje}
+    setMensaje={setMensaje}
+    EnviarMensaje={EnviarMensaje}
+  />
 </>
 
   );
