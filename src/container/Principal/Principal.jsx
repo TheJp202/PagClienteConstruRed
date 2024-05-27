@@ -4,7 +4,7 @@ import Fondito from "../../fondo/fondo";
 
 const PrincipalContainer = () => {
   return (
-    <div>
+    <div className="scroll-smooth md:scroll-auto">
     <Fondito/>
     <Layout>
       <Inicio />

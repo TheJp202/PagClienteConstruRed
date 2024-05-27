@@ -2,7 +2,7 @@ import "./fond.scss";
 
 const Fondito = () => {
   return (
-    <div className="stars ">
+    <div className="stars">
       {Array.from({ length: 50 }).map((_, index) => (
         <div className="star" key={index}></div>
       ))}

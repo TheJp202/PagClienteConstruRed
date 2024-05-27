@@ -7,7 +7,7 @@ import { LoadingProvider}  from './utils/loadingGlobal.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <LoadingProvider>
-    <App />
+    <App/>
     </LoadingProvider>
   </React.StrictMode>
 )

@@ -61,3 +61,8 @@ width: 70%;
     width: 40%;
 }
 }
+@font-face {
+  font-family: 'Couture';
+  src: url('../fonts/couture.ttf') format('truetype');
+  /* Añade más formatos de fuente si es necesario */
+}
